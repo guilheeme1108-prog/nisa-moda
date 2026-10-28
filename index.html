@@ -9,35 +9,51 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
     <!-- Cabeçalho -->
-    <header class="header">
-        <div class="logo-container">
+    <header class="header" id="inicio">
+        <a href="#inicio" class="logo-container">
             <div class="logo">
                 <span class="logo-serif">N</span><span class="logo-script">isa</span>
             </div>
             <div class="logo-subtitle">
                 <span class="line"></span> MODA FITNESS <span class="line"></span>
             </div>
-        </div>
+        </a>
         
         <!-- O menu permanece sem 'Coleções' conforme restrição original -->
         <nav class="nav-menu">
             <ul>
-                <li><a href="#" class="active">INÍCIO</a></li>
-                <li><a href="#">PRODUTOS</a></li>
-                <li><a href="#">SOBRE NÓS</a></li>
-                <li><a href="#">CONTATO</a></li>
+                <li><a href="#inicio" class="active">INÍCIO</a></li>
+                <li><a href="#produtos">PRODUTOS</a></li>
+                <li><a href="#sobre-nos">SOBRE NÓS</a></li>
+                <li><a href="#contato">CONTATO</a></li>
             </ul>
         </nav>
 
         <div class="header-icons">
-            <i class="ph ph-magnifying-glass"></i>
-            <i class="ph ph-shopping-bag"></i><span class="cart-count">0</span>
+            <button class="icon-btn" id="search-toggle-btn" aria-label="Buscar produtos">
+                <i class="ph ph-magnifying-glass"></i>
+            </button>
+            <button class="icon-btn cart-btn" id="cart-open-btn" aria-label="Abrir sacola de compras">
+                <i class="ph ph-shopping-bag"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </button>
+        </div>
+
+        <!-- Barra de Busca Expansível -->
+        <div class="search-bar-container" id="search-bar">
+            <div class="search-input-wrapper">
+                <i class="ph ph-magnifying-glass"></i>
+                <input type="text" id="search-input" placeholder="Buscar por top, conjunto, macacão, cor...">
+                <button class="search-close" id="search-close-btn" aria-label="Fechar busca">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -49,21 +65,18 @@
                 <h1 class="hero-title">VISTA SUA<br>MELHOR VERSÃO</h1>
                 <div class="hero-divider"></div>
                 <p class="hero-subtitle">Peças desenvolvidas para acompanhar<br>você em todos os seus movimentos.</p>
-                <button class="cta-button">COMPRAR AGORA</button>
+                <a href="#produtos" class="cta-button">COMPRAR AGORA</a>
             </div>
             
             <div class="hero-right">
-                <div class="hero-image-placeholder">
-                    <span class="placeholder-text">
-                        [ Insira a foto da modelo aqui ]<br>
-                        <small>A imagem deve ter fundo transparente ou mesma cor do fundo para mesclar com o layout.</small>
-                    </span>
+                <div class="hero-image-wrapper">
+                    <img src="img/macacao-duo/preto-costas.jpg" alt="Modelo vestindo Nisa Moda Fitness" class="hero-img">
                 </div>
             </div>
         </section>
 
         <!-- Sessão de Diferenciais -->
-        <section class="diferenciais">
+        <section class="diferenciais" id="sobre-nos">
             <div class="dif-item">
                 <i class="ph ph-leaf"></i>
                 <div class="dif-text">
@@ -94,7 +107,7 @@
             </div>
         </section>
 
-        <!-- Sessão de Coleções em Destaque (Idêntica ao Mockup) -->
+        <!-- Sessão de Coleções em Destaque (Idêntica ao Mockup, com fotos reais) -->
         <section class="colecoes">
             <div class="section-header">
                 <h2 class="section-title-serif">COLEÇÕES</h2>
@@ -103,63 +116,140 @@
 
             <div class="category-grid">
                 <!-- Box TOPS -->
-                <div class="category-card">
+                <a href="#produtos" class="category-card" data-filter-cat="tops">
                     <div class="category-image-placeholder">
-                        <span class="placeholder-text">[ Foto Tops ]</span>
+                        <img src="img/top-frente-u/preto-frente.jpg" alt="Coleção de Tops Nisa" loading="lazy">
                     </div>
                     <div class="category-label">TOPS</div>
-                </div>
+                </a>
                 
-                <!-- Box LEGGINGS -->
-                <div class="category-card">
+                <!-- Box LEGGINGS & SHORTS -->
+                <a href="#produtos" class="category-card" data-filter-cat="shorts">
                     <div class="category-image-placeholder">
-                        <span class="placeholder-text">[ Foto Leggings ]</span>
+                        <img src="img/short-com-bolso-lateral/frente-lateral.jpg" alt="Coleção de Shorts e Leggings Nisa" loading="lazy">
                     </div>
-                    <div class="category-label">LEGGINGS</div>
-                </div>
+                    <div class="category-label">LEGGINGS &amp; SHORTS</div>
+                </a>
                 
                 <!-- Box CONJUNTOS -->
-                <div class="category-card">
+                <a href="#produtos" class="category-card" data-filter-cat="conjuntos">
                     <div class="category-image-placeholder">
-                        <span class="placeholder-text">[ Foto Conjuntos ]</span>
+                        <img src="img/conjunto-corrida/preto-frente.jpg" alt="Coleção de Conjuntos Nisa" loading="lazy">
                     </div>
                     <div class="category-label">CONJUNTOS</div>
-                </div>
+                </a>
                 
-                <!-- Box LANÇAMENTOS -->
-                <div class="category-card">
+                <!-- Box LANÇAMENTOS (MACACÕES) -->
+                <a href="#produtos" class="category-card" data-filter-cat="macacoes">
                     <div class="category-image-placeholder">
-                        <span class="placeholder-text">[ Foto Lançamentos ]</span>
+                        <img src="img/macacao-longo/marrom-frente.jpg" alt="Lançamentos e Macacões Nisa" loading="lazy">
                     </div>
                     <div class="category-label">LANÇAMENTOS</div>
-                </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Vitrine Completa de Produtos (E-commerce Profissional) -->
+        <section class="catalogo" id="produtos">
+            <div class="section-header">
+                <h2 class="section-title-serif">NOSSAS PEÇAS</h2>
+                <span class="section-title-script">escolha a sua</span>
+            </div>
+
+            <!-- Filtros de Categoria -->
+            <div class="catalog-filters" id="catalog-filters">
+                <button class="filter-pill active" data-category="todos">TODOS</button>
+                <button class="filter-pill" data-category="conjuntos">CONJUNTOS</button>
+                <button class="filter-pill" data-category="macacoes">MACACÕES</button>
+                <button class="filter-pill" data-category="tops">TOPS &amp; BLUSAS</button>
+                <button class="filter-pill" data-category="shorts">SHORTS</button>
+            </div>
+
+            <!-- Grid de Produtos Renderizado via JS -->
+            <div class="products-grid" id="products-grid">
+                <!-- Preenchido dinamicamente pelo script.js -->
             </div>
         </section>
     </main>
 
     <!-- Rodapé -->
-    <footer class="footer">
+    <footer class="footer" id="contato">
         <div class="footer-banner">
             <p>FEITO PARA MULHERES REAIS, QUE ESCOLHEM SE SUPERAR TODOS OS DIAS.</p>
         </div>
         <div class="footer-main">
-            <div class="footer-item">
+            <a href="https://instagram.com/_usenisa" target="_blank" rel="noopener" class="footer-item">
                 <i class="ph ph-instagram-logo"></i>
                 <span>_usenisa</span>
-            </div>
+            </a>
             <div class="footer-item">
                 <i class="ph ph-whatsapp-logo"></i>
                 <span>(79) 99999-9999</span>
             </div>
-            <div class="footer-item">
+            <a href="mailto:contato@usenisa.com.br" class="footer-item">
                 <i class="ph ph-envelope-simple"></i>
                 <span>contato@usenisa.com.br</span>
-            </div>
+            </a>
             <div class="footer-item">
                 <i class="ph ph-heart"></i>
                 <span>Feito com amor para você</span>
             </div>
         </div>
     </footer>
+
+    <!-- Overlay e Drawer da Sacola de Compras -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <aside class="cart-drawer" id="cart-drawer" aria-label="Sacola de Compras">
+        <div class="cart-header">
+            <div class="cart-title">
+                <i class="ph ph-shopping-bag"></i>
+                <h3>SUA SACOLA</h3>
+                <span class="cart-header-count" id="cart-header-count">(0)</span>
+            </div>
+            <button class="cart-close-btn" id="cart-close-btn" aria-label="Fechar sacola">
+                <i class="ph ph-x"></i>
+            </button>
+        </div>
+
+        <div class="cart-body" id="cart-items-container">
+            <!-- Itens da sacola renderizados via JS -->
+        </div>
+
+        <div class="cart-footer" id="cart-footer">
+            <div class="cart-summary-row">
+                <span>Subtotal</span>
+                <strong id="cart-subtotal">R$ 0,00</strong>
+            </div>
+            <div class="cart-customer-field">
+                <label for="customer-name">Seu nome para o atendimento:</label>
+                <input type="text" id="customer-name" placeholder="Ex: Maria Clara">
+            </div>
+            <button class="checkout-btn" id="checkout-btn">
+                <i class="ph ph-whatsapp-logo"></i>
+                <span>FINALIZAR PEDIDO</span>
+            </button>
+            <p class="cart-note">Você será direcionada ao atendimento exclusivo da Nisa com as peças escolhidas.</p>
+        </div>
+    </aside>
+
+    <!-- Modal de Galeria / Detalhes Rápidos do Produto -->
+    <div class="modal-overlay" id="product-modal-overlay">
+        <div class="product-modal" id="product-modal">
+            <button class="modal-close-btn" id="modal-close-btn" aria-label="Fechar visualização">
+                <i class="ph ph-x"></i>
+            </button>
+            <div class="modal-content" id="modal-content">
+                <!-- Preenchido via JS ao clicar na foto do produto -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast de Notificação -->
+    <div class="toast-notification" id="toast">
+        <i class="ph ph-check-circle"></i>
+        <span id="toast-message">Peça adicionada à sacola!</span>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
