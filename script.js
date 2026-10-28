@@ -261,6 +261,16 @@ function formatCurrency(value) {
     return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
+// Normaliza texto para busca (remove acentos, cedilha e diferenciação de maiúsculas/minúsculas)
+function normalizeSearchText(str) {
+    return (str || '')
+        .toString()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .trim();
+}
+
 // Carregar sacola do localStorage
 function loadCart() {
     try {
@@ -286,15 +296,38 @@ function renderCatalog() {
     const grid = document.getElementById('products-grid');
     if (!grid) return;
 
+    const q = normalizeSearchText(searchQuery);
+    const queryWords = q ? q.split(/\s+/).filter(Boolean) : [];
+
     const filtered = PRODUCTS.filter(product => {
         const matchesCat = currentCategory === 'todos' || product.category === currentCategory;
-        const q = searchQuery.trim().toLowerCase();
-        if (!q) return matchesCat;
+        if (queryWords.length === 0) return matchesCat;
 
-        const inName = product.name.toLowerCase().includes(q);
-        const inCat = product.categoryLabel.toLowerCase().includes(q);
-        const inColors = product.colors.some(c => c.name.toLowerCase().includes(q));
-        return matchesCat && (inName || inCat || inColors);
+        const searchableContent = normalizeSearchText([
+            product.id.replace(/-/g, ' '),
+            product.name,
+            product.category,
+            product.categoryLabel,
+            product.description,
+            product.badge,
+            ...product.colors.map(c => c.name)
+        ].join(' '));
+
+        const matchesAllWords = queryWords.every(word => searchableContent.includes(word));
+
+        // Se o cliente buscou pelo nome de uma cor específica (ex: "rosa", "amarelo", "marrom"), seleciona essa cor no card
+        if (matchesAllWords) {
+            const matchedColorIdx = product.colors.findIndex(c => {
+                const normColor = normalizeSearchText(c.name);
+                return queryWords.some(w => w.length >= 3 && normColor.includes(w));
+            });
+            if (matchedColorIdx !== -1) {
+                cardSelections[product.id].colorIndex = matchedColorIdx;
+                cardSelections[product.id].view = 'front';
+            }
+        }
+
+        return matchesCat && matchesAllWords;
     });
 
     if (filtered.length === 0) {
@@ -782,6 +815,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     searchInput?.addEventListener('input', (e) => {
         searchQuery = e.target.value;
+        // Ao digitar na busca, ativa automaticamente a visão "TODOS" para não ocultar resultados de outras categorias
+        if (searchQuery.trim().length > 0 && currentCategory !== 'todos') {
+            currentCategory = 'todos';
+            document.querySelectorAll('.filter-pill').forEach(b => {
+                b.classList.toggle('active', b.getAttribute('data-category') === 'todos');
+            });
+        }
         renderCatalog();
         const catalogSection = document.getElementById('produtos');
         if (searchQuery.length === 1 && catalogSection) {
