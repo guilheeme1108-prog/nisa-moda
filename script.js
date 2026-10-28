@@ -82,11 +82,7 @@ const PRODUCTS = [
                 hex: '#171717',
                 front: 'img/macacao-duo/preto-frente.jpg',
                 back: 'img/macacao-duo/preto-costas.jpg',
-                extraPhotos: [
-                    'img/macacao-duo/em-pe.jpg',
-                    'img/macacao-duo/sentada-1.jpg',
-                    'img/macacao-duo/sentadas-2.jpg'
-                ]
+                extraPhotos: []
             },
             {
                 name: 'Azul Marinho',
@@ -94,6 +90,17 @@ const PRODUCTS = [
                 front: 'img/macacao-duo/azul-frente.jpg',
                 back: 'img/macacao-duo/azul-costas.jpg',
                 extraPhotos: []
+            },
+            {
+                name: '2 Macaquinhos (Preto + Marrom Café)',
+                hex: 'linear-gradient(90deg, #171717 50%, #5C3327 50%)',
+                price: 339.80,
+                front: 'img/macacao-duo/em-pe.jpg',
+                back: 'img/macacao-duo/sentada-1.jpg',
+                altLabel: 'POSE 2',
+                extraPhotos: [
+                    'img/macacao-duo/sentadas-2.jpg'
+                ]
             }
         ],
         extraPhotos: []
