@@ -23,7 +23,8 @@ const PRODUCTS = [
                 name: 'Preto',
                 hex: '#171717',
                 front: 'img/conjunto-corrida/preto-frente.jpg',
-                back: 'img/conjunto-corrida/dupla-1.jpg'
+                back: 'img/conjunto-corrida/dupla-1.jpg',
+                altLabel: 'DUPLA'
             },
             {
                 name: 'Azul Bebê',
@@ -47,7 +48,8 @@ const PRODUCTS = [
                 name: 'Rosa Bebê',
                 hex: '#F2B8C6',
                 front: 'img/conjunto-corrida/rosa-frente.jpg',
-                back: 'img/conjunto-corrida/dupla-2.jpg'
+                back: 'img/conjunto-corrida/dupla-2.jpg',
+                altLabel: 'DUPLA'
             }
         ],
         extraPhotos: [
@@ -214,7 +216,8 @@ const PRODUCTS = [
                 name: 'Branco Off',
                 hex: '#F3F2EE',
                 front: 'img/blusa-dry-fit/longe.jpg',
-                back: 'img/blusa-dry-fit/frente.jpg'
+                back: 'img/blusa-dry-fit/frente.jpg',
+                altLabel: 'DETALHE'
             }
         ],
         extraPhotos: []
@@ -316,6 +319,8 @@ function renderCatalog() {
             >${s}</button>
         `).join('');
 
+        const secondLabel = activeColor.altLabel || 'COSTAS';
+
         return `
             <article class="product-card" data-product-id="${product.id}">
                 <div class="product-image-box" onclick="openProductModal('${product.id}')">
@@ -334,10 +339,10 @@ function renderCatalog() {
                             class="img-action-btn ${state.view === 'back' ? 'active-view' : ''}"
                             id="flip-btn-${product.id}"
                             onclick="toggleProductView('${product.id}')"
-                            title="Alternar entre frente e costas"
+                            title="Alternar visualização da peça"
                         >
                             <i class="ph ph-arrows-clockwise"></i>
-                            <span>${state.view === 'back' ? 'FRENTE' : 'COSTAS'}</span>
+                            <span>${state.view === 'back' ? 'FRENTE' : secondLabel}</span>
                         </button>
                         <button
                             type="button"
@@ -407,7 +412,7 @@ window.selectProductColor = function(productId, colorIndex) {
     if (flipBtn) {
         flipBtn.classList.remove('active-view');
         const span = flipBtn.querySelector('span');
-        if (span) span.textContent = 'COSTAS';
+        if (span) span.textContent = activeColor.altLabel || 'COSTAS';
     }
     if (swatchesContainer) {
         Array.from(swatchesContainer.children).forEach((btn, idx) => {
@@ -416,7 +421,7 @@ window.selectProductColor = function(productId, colorIndex) {
     }
 };
 
-// Alternar visualização Frente / Costas
+// Alternar visualização Frente / Costas (ou Detalhe/Dupla)
 window.toggleProductView = function(productId) {
     const product = PRODUCTS.find(p => p.id === productId);
     if (!product) return;
@@ -427,6 +432,7 @@ window.toggleProductView = function(productId) {
 
     const imgEl = document.getElementById(`img-${productId}`);
     const flipBtn = document.getElementById(`flip-btn-${productId}`);
+    const secondLabel = activeColor.altLabel || 'COSTAS';
 
     if (imgEl) {
         imgEl.src = state.view === 'back' && activeColor.back ? activeColor.back : activeColor.front;
@@ -434,7 +440,7 @@ window.toggleProductView = function(productId) {
     if (flipBtn) {
         flipBtn.classList.toggle('active-view', state.view === 'back');
         const span = flipBtn.querySelector('span');
-        if (span) span.textContent = state.view === 'back' ? 'FRENTE' : 'COSTAS';
+        if (span) span.textContent = state.view === 'back' ? 'FRENTE' : secondLabel;
     }
 };
 
