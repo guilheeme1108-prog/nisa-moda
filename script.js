@@ -797,4 +797,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
         showToast(`Pedido de ${customerName} (${formatCurrency(total)}) pronto! Assim que definir o WhatsApp da loja, ativaremos o envio direto.`);
     });
+
+    // Carrossel de arrastar da Capa no Celular (1 foto vertical por vez)
+    const heroGrid = document.getElementById('hero-editorial-grid');
+    const heroDots = document.querySelectorAll('#hero-carousel-dots .hero-dot');
+    if (heroGrid && heroDots.length > 0) {
+        heroGrid.addEventListener('scroll', () => {
+            const slideWidth = heroGrid.clientWidth;
+            if (slideWidth <= 0) return;
+            const activeIdx = Math.round(heroGrid.scrollLeft / slideWidth);
+            heroDots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === activeIdx);
+            });
+        }, { passive: true });
+
+        heroDots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => {
+                const slideWidth = heroGrid.clientWidth;
+                heroGrid.scrollTo({ left: slideWidth * idx, behavior: 'smooth' });
+            });
+        });
+    }
 });
