@@ -23,39 +23,45 @@ const PRODUCTS = [
                 name: 'Preto',
                 hex: '#171717',
                 front: 'img/conjunto-corrida/preto-frente.jpg',
-                back: 'img/conjunto-corrida/dupla-1.jpg',
-                altLabel: 'DUPLA'
+                back: null,
+                extraPhotos: []
             },
             {
                 name: 'Azul Bebê',
                 hex: '#9BB7D4',
                 front: 'img/conjunto-corrida/azul-frente.jpg',
-                back: 'img/conjunto-corrida/azul-costas.jpg'
+                back: 'img/conjunto-corrida/azul-costas.jpg',
+                extraPhotos: [
+                    'img/conjunto-corrida/dupla-1.jpg',
+                    'img/conjunto-corrida/dupla-2.jpg'
+                ]
             },
             {
                 name: 'Marrom Café',
                 hex: '#5C3327',
                 front: 'img/conjunto-corrida/marrom-frente.jpg',
-                back: 'img/conjunto-corrida/marrom-costas.jpg'
+                back: 'img/conjunto-corrida/marrom-costas.jpg',
+                extraPhotos: []
             },
             {
                 name: 'Amarelo Manteiga',
                 hex: '#F3EA92',
                 front: 'img/conjunto-corrida/amarelo-frente.jpg',
-                back: 'img/conjunto-corrida/amarelo-costas.jpg'
+                back: 'img/conjunto-corrida/amarelo-costas.jpg',
+                extraPhotos: [
+                    'img/conjunto-corrida/dupla-1.jpg',
+                    'img/conjunto-corrida/dupla-2.jpg'
+                ]
             },
             {
                 name: 'Rosa Bebê',
                 hex: '#F2B8C6',
                 front: 'img/conjunto-corrida/rosa-frente.jpg',
-                back: 'img/conjunto-corrida/dupla-2.jpg',
-                altLabel: 'DUPLA'
+                back: null,
+                extraPhotos: []
             }
         ],
-        extraPhotos: [
-            'img/conjunto-corrida/dupla-1.jpg',
-            'img/conjunto-corrida/dupla-2.jpg'
-        ]
+        extraPhotos: []
     },
     {
         id: 'macacao-duo',
@@ -73,20 +79,22 @@ const PRODUCTS = [
                 name: 'Preto',
                 hex: '#171717',
                 front: 'img/macacao-duo/preto-frente.jpg',
-                back: 'img/macacao-duo/preto-costas.jpg'
+                back: 'img/macacao-duo/preto-costas.jpg',
+                extraPhotos: [
+                    'img/macacao-duo/em-pe.jpg',
+                    'img/macacao-duo/sentada-1.jpg',
+                    'img/macacao-duo/sentadas-2.jpg'
+                ]
             },
             {
                 name: 'Azul Marinho',
                 hex: '#122249',
                 front: 'img/macacao-duo/azul-frente.jpg',
-                back: 'img/macacao-duo/azul-costas.jpg'
+                back: 'img/macacao-duo/azul-costas.jpg',
+                extraPhotos: []
             }
         ],
-        extraPhotos: [
-            'img/macacao-duo/em-pe.jpg',
-            'img/macacao-duo/sentada-1.jpg',
-            'img/macacao-duo/sentadas-2.jpg'
-        ]
+        extraPhotos: []
     },
     {
         id: 'macacao-longo',
@@ -338,6 +346,7 @@ function renderCatalog() {
                             type="button"
                             class="img-action-btn ${state.view === 'back' ? 'active-view' : ''}"
                             id="flip-btn-${product.id}"
+                            style="display: ${activeColor.back ? 'inline-flex' : 'none'};"
                             onclick="toggleProductView('${product.id}')"
                             title="Alternar visualização da peça"
                         >
@@ -411,6 +420,7 @@ window.selectProductColor = function(productId, colorIndex) {
     if (labelEl) labelEl.textContent = activeColor.name;
     if (flipBtn) {
         flipBtn.classList.remove('active-view');
+        flipBtn.style.display = activeColor.back ? 'inline-flex' : 'none';
         const span = flipBtn.querySelector('span');
         if (span) span.textContent = activeColor.altLabel || 'COSTAS';
     }
@@ -583,12 +593,13 @@ window.openProductModal = function(productId) {
     const state = cardSelections[productId];
     const activeColor = product.colors[state.colorIndex];
 
-    // Reúne todas as fotos da cor atual + fotos extras em dupla/poses
+    // Reúne todas as fotos da cor atual + fotos extras específicas da cor (ou gerais do produto)
     const allPhotos = [activeColor.front];
     if (activeColor.back && !allPhotos.includes(activeColor.back)) {
         allPhotos.push(activeColor.back);
     }
-    product.extraPhotos.forEach(p => {
+    const colorExtras = Array.isArray(activeColor.extraPhotos) ? activeColor.extraPhotos : (product.extraPhotos || []);
+    colorExtras.forEach(p => {
         if (!allPhotos.includes(p)) allPhotos.push(p);
     });
 
