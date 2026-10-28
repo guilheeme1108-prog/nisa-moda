@@ -31,10 +31,7 @@ const PRODUCTS = [
                 hex: '#9BB7D4',
                 front: 'img/conjunto-corrida/azul-frente.jpg',
                 back: 'img/conjunto-corrida/azul-costas.jpg',
-                extraPhotos: [
-                    'img/conjunto-corrida/dupla-1.jpg',
-                    'img/conjunto-corrida/dupla-2.jpg'
-                ]
+                extraPhotos: []
             },
             {
                 name: 'Marrom Café',
@@ -48,16 +45,21 @@ const PRODUCTS = [
                 hex: '#F3EA92',
                 front: 'img/conjunto-corrida/amarelo-frente.jpg',
                 back: 'img/conjunto-corrida/amarelo-costas.jpg',
-                extraPhotos: [
-                    'img/conjunto-corrida/dupla-1.jpg',
-                    'img/conjunto-corrida/dupla-2.jpg'
-                ]
+                extraPhotos: []
             },
             {
                 name: 'Rosa Bebê',
                 hex: '#F2B8C6',
                 front: 'img/conjunto-corrida/rosa-frente.jpg',
                 back: null,
+                extraPhotos: []
+            },
+            {
+                name: '2 Conjuntos (Azul Bebê + Amarelo Manteiga)',
+                hex: 'linear-gradient(90deg, #9BB7D4 50%, #F3EA92 50%)',
+                price: 319.80,
+                front: 'img/conjunto-corrida/dupla-1.jpg',
+                back: 'img/conjunto-corrida/dupla-2.jpg',
                 extraPhotos: []
             }
         ],
@@ -302,7 +304,8 @@ function renderCatalog() {
         const state = cardSelections[product.id];
         const activeColor = product.colors[state.colorIndex];
         const currentImg = state.view === 'back' && activeColor.back ? activeColor.back : activeColor.front;
-        const installmentValue = formatCurrency(product.price / 3);
+        const currentPrice = activeColor.price || product.price;
+        const installmentValue = formatCurrency(currentPrice / 3);
 
         const badgeHTML = product.badge
             ? `<span class="product-badge ${product.badgeType === 'rose' ? 'rose' : ''}">${product.badge}</span>`
@@ -312,7 +315,7 @@ function renderCatalog() {
             <button
                 type="button"
                 class="color-swatch ${idx === state.colorIndex ? 'active' : ''}"
-                style="background-color: ${c.hex};"
+                style="background: ${c.hex};"
                 title="${c.name}"
                 aria-label="Cor ${c.name}"
                 onclick="selectProductColor('${product.id}', ${idx})"
@@ -369,8 +372,8 @@ function renderCatalog() {
                     <h3 class="product-title">${product.name}</h3>
 
                     <div class="product-price-block">
-                        <span class="product-price">${formatCurrency(product.price)}</span>
-                        <span class="product-installments">ou 3x de ${installmentValue} sem juros</span>
+                        <span class="product-price" id="price-${product.id}">${formatCurrency(currentPrice)}</span>
+                        <span class="product-installments" id="installments-${product.id}">ou 3x de ${installmentValue} sem juros</span>
                     </div>
 
                     <div class="product-option-row">
@@ -411,13 +414,18 @@ window.selectProductColor = function(productId, colorIndex) {
     cardSelections[productId].view = 'front';
 
     const activeColor = product.colors[colorIndex];
+    const currentPrice = activeColor.price || product.price;
     const imgEl = document.getElementById(`img-${productId}`);
     const labelEl = document.getElementById(`color-label-${productId}`);
+    const priceEl = document.getElementById(`price-${productId}`);
+    const installmentsEl = document.getElementById(`installments-${productId}`);
     const flipBtn = document.getElementById(`flip-btn-${productId}`);
     const swatchesContainer = document.getElementById(`swatches-${productId}`);
 
     if (imgEl) imgEl.src = activeColor.front;
     if (labelEl) labelEl.textContent = activeColor.name;
+    if (priceEl) priceEl.textContent = formatCurrency(currentPrice);
+    if (installmentsEl) installmentsEl.textContent = `ou 3x de ${formatCurrency(currentPrice / 3)} sem juros`;
     if (flipBtn) {
         flipBtn.classList.remove('active-view');
         flipBtn.style.display = activeColor.back ? 'inline-flex' : 'none';
@@ -472,6 +480,7 @@ window.addProductToCart = function(productId) {
 
     const state = cardSelections[productId];
     const selectedColor = product.colors[state.colorIndex];
+    const itemPrice = selectedColor.price || product.price;
     const cartKey = `${product.id}__${selectedColor.name}__${state.size}`;
 
     const existing = cart.find(item => item.key === cartKey);
@@ -484,7 +493,7 @@ window.addProductToCart = function(productId) {
             name: product.name,
             color: selectedColor.name,
             size: state.size,
-            price: product.price,
+            price: itemPrice,
             image: selectedColor.front,
             qty: 1
         });
@@ -616,11 +625,13 @@ window.openProductModal = function(productId) {
         >
     `).join('');
 
+    const currentPrice = activeColor.price || product.price;
+
     const swatchesHTML = product.colors.map((c, idx) => `
         <button
             type="button"
             class="color-swatch ${idx === state.colorIndex ? 'active' : ''}"
-            style="background-color: ${c.hex};"
+            style="background: ${c.hex};"
             title="${c.name}"
             onclick="selectProductColor('${product.id}', ${idx}); openProductModal('${product.id}')"
         ></button>
@@ -647,8 +658,8 @@ window.openProductModal = function(productId) {
             <span class="product-category-tag">${product.categoryLabel}</span>
             <h2 class="product-title" style="font-size: 1.7rem; margin-bottom: 0.6rem;">${product.name}</h2>
             <div class="product-price-block">
-                <span class="product-price" style="font-size: 1.4rem;">${formatCurrency(product.price)}</span>
-                <span class="product-installments">ou 3x de ${formatCurrency(product.price / 3)} sem juros</span>
+                <span class="product-price" style="font-size: 1.4rem;">${formatCurrency(currentPrice)}</span>
+                <span class="product-installments">ou 3x de ${formatCurrency(currentPrice / 3)} sem juros</span>
             </div>
             <p class="modal-desc">${product.description}</p>
 
