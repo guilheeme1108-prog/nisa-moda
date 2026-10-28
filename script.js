@@ -15,6 +15,7 @@ const PRODUCTS = [
         price: 159.90,
         badge: 'Mais Vendido',
         badgeType: 'dark',
+        focalPoint: 'center 68%',
         description: 'Conjunto esportivo de alta performance com acabamento contrastante em branco, cós anatômico que modela a cintura e top com alças cruzadas nas costas.',
         sizes: ['P', 'M', 'G'],
         colors: [
@@ -62,6 +63,7 @@ const PRODUCTS = [
         price: 169.90,
         badge: 'Lançamento',
         badgeType: 'rose',
+        focalPoint: 'center 65%',
         description: 'Macaquinho manga curta com recorte sofisticado, zero transparência e compressão na medida certa para valorizar suas curvas com máximo conforto.',
         sizes: ['P', 'M', 'G'],
         colors: [
@@ -92,6 +94,7 @@ const PRODUCTS = [
         price: 199.90,
         badge: 'Premium',
         badgeType: 'dark',
+        focalPoint: 'center 62%',
         description: 'Peça única longa de modelagem escultural. Costas cavadas com caimento impecável e tecido encorpado de toque macio e alta elasticidade.',
         sizes: ['P', 'M', 'G'],
         colors: [
@@ -118,6 +121,7 @@ const PRODUCTS = [
         price: 164.90,
         badge: 'Novo',
         badgeType: 'rose',
+        focalPoint: 'center 66%',
         description: 'Conjunto versátil composto por top de alças finas e short de cintura alta com bolso lateral funcional para levar celular ou chave durante o treino.',
         sizes: ['P', 'M', 'G'],
         colors: [
@@ -140,6 +144,7 @@ const PRODUCTS = [
         price: 89.90,
         badge: 'Essencial',
         badgeType: 'dark',
+        focalPoint: 'center 48%',
         description: 'Top frente única com decote U elegante e costas livres. Sustentação firme e bordado exclusivo Nisa no peito.',
         sizes: ['P', 'M', 'G'],
         colors: [
@@ -178,6 +183,7 @@ const PRODUCTS = [
         price: 94.90,
         badge: '',
         badgeType: '',
+        focalPoint: 'center 55%',
         description: 'Short avulso de compressão com cós alto anatômico e bolso lateral profundo. Ideal para corrida, musculação e uso casual.',
         sizes: ['P', 'M', 'G'],
         colors: [
@@ -200,6 +206,7 @@ const PRODUCTS = [
         price: 79.90,
         badge: 'Leveza',
         badgeType: 'rose',
+        focalPoint: 'center 70%',
         description: 'Camiseta em malha Dry Fit microperfurada ultra respirável com monograma Nisa na barra. Mantém a pele fresca durante todo o treino.',
         sizes: ['P', 'M', 'G'],
         colors: [
@@ -318,6 +325,7 @@ function renderCatalog() {
                         alt="${product.name} - ${activeColor.name}"
                         class="main-photo"
                         id="img-${product.id}"
+                        style="object-position: ${product.focalPoint || 'center 62%'};"
                         loading="lazy"
                     >
                     <div class="image-actions" onclick="event.stopPropagation()">
@@ -612,7 +620,7 @@ window.openProductModal = function(productId) {
     modalContent.innerHTML = `
         <div class="modal-gallery">
             <div class="modal-main-img-wrap">
-                <img src="${allPhotos[0]}" alt="${product.name}" id="modal-main-img">
+                <img src="${allPhotos[0]}" alt="${product.name}" id="modal-main-img" style="object-position: ${product.focalPoint || 'center 62%'};">
             </div>
             <div class="modal-thumbs">
                 ${thumbsHTML}
