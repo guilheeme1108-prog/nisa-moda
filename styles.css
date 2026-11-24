@@ -722,6 +722,24 @@ ul {
     color: #FFFFFF;
 }
 
+.size-pill.disabled {
+    opacity: 0.28;
+    cursor: not-allowed;
+    background-color: #F8F6F3;
+    border-color: rgba(169, 154, 142, 0.25);
+    color: var(--details);
+    text-decoration: line-through;
+    pointer-events: none;
+}
+
+.product-stock-tag {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--highlight);
+    margin-top: 0.35rem;
+    display: block;
+}
+
 /* Botão Adicionar à Sacola */
 .add-to-cart-btn {
     margin-top: auto;

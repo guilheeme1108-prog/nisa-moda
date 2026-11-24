@@ -8,69 +8,11 @@
 
 const PRODUCTS = [
     {
-        id: 'conjunto-corrida',
-        name: 'Conjunto Corrida Nisa',
-        category: 'conjuntos',
-        categoryLabel: 'Conjuntos',
-        price: 159.90,
-        badge: 'Mais Vendido',
-        badgeType: 'dark',
-        focalPoint: 'center 68%',
-        description: 'Conjunto esportivo de alta performance com acabamento contrastante em branco, cós anatômico que modela a cintura e top com alças cruzadas nas costas.',
-        sizes: ['P', 'M', 'G'],
-        colors: [
-            {
-                name: 'Preto',
-                hex: '#171717',
-                front: 'img/conjunto-corrida/preto-frente.jpg',
-                back: null,
-                extraPhotos: []
-            },
-            {
-                name: 'Azul Bebê',
-                hex: '#9BB7D4',
-                front: 'img/conjunto-corrida/azul-frente.jpg',
-                back: 'img/conjunto-corrida/azul-costas.jpg',
-                extraPhotos: []
-            },
-            {
-                name: 'Marrom Café',
-                hex: '#5C3327',
-                front: 'img/conjunto-corrida/marrom-frente.jpg',
-                back: 'img/conjunto-corrida/marrom-costas.jpg',
-                extraPhotos: []
-            },
-            {
-                name: 'Amarelo Manteiga',
-                hex: '#F3EA92',
-                front: 'img/conjunto-corrida/amarelo-frente.jpg',
-                back: 'img/conjunto-corrida/amarelo-costas.jpg',
-                extraPhotos: []
-            },
-            {
-                name: 'Rosa Bebê',
-                hex: '#F2B8C6',
-                front: 'img/conjunto-corrida/rosa-frente.jpg',
-                back: null,
-                extraPhotos: []
-            },
-            {
-                name: '2 Conjuntos (Azul Bebê + Amarelo Manteiga)',
-                hex: 'linear-gradient(90deg, #9BB7D4 50%, #F3EA92 50%)',
-                price: 319.80,
-                front: 'img/conjunto-corrida/dupla-1.jpg',
-                back: 'img/conjunto-corrida/dupla-2.jpg',
-                extraPhotos: []
-            }
-        ],
-        extraPhotos: []
-    },
-    {
         id: 'macacao-duo',
         name: 'Macaquinho Duo',
         category: 'macacoes',
         categoryLabel: 'Macacões',
-        price: 169.90,
+        price: 60.00,
         badge: 'Lançamento',
         badgeType: 'rose',
         focalPoint: 'center 65%',
@@ -78,26 +20,40 @@ const PRODUCTS = [
         sizes: ['P', 'M', 'G'],
         colors: [
             {
+                name: 'Azul',
+                hex: '#122249',
+                front: 'img/macacao-duo/azul-frente.jpg',
+                back: 'img/macacao-duo/azul-costas.jpg',
+                stock: { P: 1, M: 2, G: 1 },
+                extraPhotos: []
+            },
+            {
                 name: 'Preto',
                 hex: '#171717',
                 front: 'img/macacao-duo/preto-frente.jpg',
                 back: 'img/macacao-duo/preto-costas.jpg',
+                stock: { M: 1, G: 1 },
                 extraPhotos: []
             },
             {
-                name: 'Azul Marinho',
-                hex: '#122249',
-                front: 'img/macacao-duo/azul-frente.jpg',
-                back: 'img/macacao-duo/azul-costas.jpg',
-                extraPhotos: []
+                name: 'Marrom',
+                hex: '#5C3327',
+                front: 'img/macacao-duo/sentada-1.jpg',
+                back: 'img/macacao-duo/em-pe.jpg',
+                altLabel: 'FOTO 2',
+                stock: { P: 1, M: 2, G: 1 },
+                extraPhotos: [
+                    'img/macacao-duo/sentadas-2.jpg'
+                ]
             },
             {
-                name: '2 Macaquinhos (Preto + Marrom Café)',
+                name: '2 Macaquinhos (Preto + Marrom)',
                 hex: 'linear-gradient(90deg, #171717 50%, #5C3327 50%)',
-                price: 339.80,
+                price: 120.00,
                 front: 'img/macacao-duo/em-pe.jpg',
                 back: 'img/macacao-duo/sentada-1.jpg',
-                altLabel: 'POSE 2',
+                altLabel: 'FOTO 2',
+                stock: { M: 1, G: 1 },
                 extraPhotos: [
                     'img/macacao-duo/sentadas-2.jpg'
                 ]
@@ -110,7 +66,7 @@ const PRODUCTS = [
         name: 'Macacão Longo Nisa',
         category: 'macacoes',
         categoryLabel: 'Macacões',
-        price: 199.90,
+        price: 70.00,
         badge: 'Premium',
         badgeType: 'dark',
         focalPoint: 'center 62%',
@@ -118,37 +74,128 @@ const PRODUCTS = [
         sizes: ['P', 'M', 'G'],
         colors: [
             {
-                name: 'Marrom Café',
-                hex: '#4A1E1B',
-                front: 'img/macacao-longo/marrom-frente.jpg',
-                back: 'img/macacao-longo/marrom-costas.jpg'
-            },
-            {
-                name: 'Azul Marinho',
+                name: 'Azul',
                 hex: '#122249',
                 front: 'img/macacao-longo/azul-frente.jpg',
-                back: 'img/macacao-longo/azul-costas.jpg'
+                back: 'img/macacao-longo/azul-costas.jpg',
+                stock: { G: 1 },
+                extraPhotos: []
+            },
+            {
+                name: 'Marrom',
+                hex: '#4A1E1B',
+                front: 'img/macacao-longo/marrom-frente.jpg',
+                back: 'img/macacao-longo/marrom-costas.jpg',
+                stock: { M: 1, G: 1 },
+                extraPhotos: []
+            }
+        ],
+        extraPhotos: []
+    },
+    {
+        id: 'conjunto-short-duplo',
+        name: 'Conjunto Short Duplo',
+        category: 'conjuntos',
+        categoryLabel: 'Conjuntos',
+        price: 60.00,
+        badge: 'Mais Vendido',
+        badgeType: 'dark',
+        focalPoint: 'center 68%',
+        description: 'Conjunto esportivo com acabamento contrastante em branco, cós anatômico que modela a cintura e top com alças cruzadas nas costas.',
+        sizes: ['P', 'M', 'G'],
+        colors: [
+            {
+                name: 'Azul',
+                hex: '#9BB7D4',
+                front: 'img/conjunto-corrida/azul-frente.jpg',
+                back: 'img/conjunto-corrida/azul-costas.jpg',
+                stock: { G: 1 },
+                extraPhotos: []
+            },
+            {
+                name: 'Rosa',
+                hex: '#F2B8C6',
+                front: 'img/conjunto-corrida/rosa-frente.jpg',
+                back: null,
+                stock: { G: 1 },
+                extraPhotos: []
+            },
+            {
+                name: 'Preto',
+                hex: '#171717',
+                front: 'img/conjunto-corrida/preto-frente.jpg',
+                back: null,
+                stock: { M: 1 },
+                extraPhotos: []
+            },
+            {
+                name: 'Amarelo',
+                hex: '#F3EA92',
+                front: 'img/conjunto-corrida/amarelo-frente.jpg',
+                back: 'img/conjunto-corrida/amarelo-costas.jpg',
+                stock: { M: 1 },
+                extraPhotos: []
+            },
+            {
+                name: 'Marrom',
+                hex: '#5C3327',
+                front: 'img/conjunto-corrida/marrom-frente.jpg',
+                back: 'img/conjunto-corrida/marrom-costas.jpg',
+                stock: { M: 1 },
+                extraPhotos: []
+            },
+            {
+                name: '2 Conjuntos (Azul + Amarelo)',
+                hex: 'linear-gradient(90deg, #9BB7D4 50%, #F3EA92 50%)',
+                price: 120.00,
+                front: 'img/conjunto-corrida/dupla-1.jpg',
+                back: 'img/conjunto-corrida/dupla-2.jpg',
+                altLabel: 'FOTO 2',
+                stock: { M: 1, G: 1 },
+                extraPhotos: []
             }
         ],
         extraPhotos: []
     },
     {
         id: 'conjunto-com-bolso',
-        name: 'Conjunto com Bolso',
+        name: 'Conjunto com Bolso Lateral',
         category: 'conjuntos',
         categoryLabel: 'Conjuntos',
-        price: 164.90,
+        price: 50.00,
         badge: 'Novo',
         badgeType: 'rose',
         focalPoint: 'center 66%',
-        description: 'Conjunto versátil composto por top de alças finas e short de cintura alta com bolso lateral funcional para levar celular ou chave durante o treino.',
+        description: 'Conjunto versátil composto por top de sustentação e short de cintura alta com bolso lateral funcional.',
         sizes: ['P', 'M', 'G'],
         colors: [
             {
-                name: 'Azul Marinho',
+                name: 'Azul',
                 hex: '#122249',
                 front: 'img/conjunto-com-bolso/azul-frente.jpg',
-                back: 'img/conjunto-com-bolso/azul-costas.jpg'
+                back: 'img/conjunto-com-bolso/azul-costas.jpg',
+                stock: { M: 1 },
+                extraPhotos: [
+                    'img/short-com-bolso-lateral/frente-lateral.jpg'
+                ]
+            },
+            {
+                name: 'Bege',
+                hex: '#D7C2A8',
+                front: 'img/conjunto-com-bolso/azul-frente.jpg',
+                back: null,
+                stock: { M: 1 },
+                badgeNotice: 'Foto ilustrativa (Bege)',
+                extraPhotos: []
+            },
+            {
+                name: 'Preto',
+                hex: '#171717',
+                front: 'img/conjunto-com-bolso/azul-frente.jpg',
+                back: null,
+                stock: { M: 1 },
+                badgeNotice: 'Foto ilustrativa (Preto)',
+                extraPhotos: []
             }
         ],
         extraPhotos: [
@@ -156,73 +203,11 @@ const PRODUCTS = [
         ]
     },
     {
-        id: 'top-frente-u',
-        name: 'Top Frente U',
-        category: 'tops',
-        categoryLabel: 'Tops & Blusas',
-        price: 89.90,
-        badge: 'Essencial',
-        badgeType: 'dark',
-        focalPoint: 'center 48%',
-        description: 'Top frente única com decote U elegante e costas livres. Sustentação firme e bordado exclusivo Nisa no peito.',
-        sizes: ['P', 'M', 'G'],
-        colors: [
-            {
-                name: 'Preto',
-                hex: '#171717',
-                front: 'img/top-frente-u/preto-frente.jpg',
-                back: 'img/top-frente-u/preto-costas.jpg'
-            },
-            {
-                name: 'Marrom Claro',
-                hex: '#844631',
-                front: 'img/top-frente-u/marrom-claro-frente.jpg',
-                back: 'img/top-frente-u/marrom-claro-costas.jpg'
-            },
-            {
-                name: 'Marrom Escuro',
-                hex: '#5E2421',
-                front: 'img/top-frente-u/marrom-escuro-frente.jpg',
-                back: 'img/top-frente-u/marrom-escuro-costas.jpg'
-            },
-            {
-                name: 'Azul Marinho',
-                hex: '#163372',
-                front: 'img/top-frente-u/azul-frente.jpg',
-                back: 'img/top-frente-u/azul-costas.jpg'
-            }
-        ],
-        extraPhotos: []
-    },
-    {
-        id: 'short-com-bolso-lateral',
-        name: 'Short com Bolso Lateral',
-        category: 'shorts',
-        categoryLabel: 'Shorts',
-        price: 94.90,
-        badge: '',
-        badgeType: '',
-        focalPoint: 'center 55%',
-        description: 'Short avulso de compressão com cós alto anatômico e bolso lateral profundo. Ideal para corrida, musculação e uso casual.',
-        sizes: ['P', 'M', 'G'],
-        colors: [
-            {
-                name: 'Azul Marinho',
-                hex: '#122249',
-                front: 'img/short-com-bolso-lateral/frente-lateral.jpg',
-                back: 'img/short-com-bolso-lateral/costas.jpg'
-            }
-        ],
-        extraPhotos: [
-            'img/short-com-bolso-lateral/frente.jpg'
-        ]
-    },
-    {
         id: 'blusa-dry-fit',
         name: 'Blusa Dry Fit Nisa',
         category: 'tops',
         categoryLabel: 'Tops & Blusas',
-        price: 79.90,
+        price: 40.00,
         badge: 'Leveza',
         badgeType: 'rose',
         focalPoint: 'center 70%',
@@ -230,11 +215,102 @@ const PRODUCTS = [
         sizes: ['P', 'M', 'G'],
         colors: [
             {
-                name: 'Branco Off',
+                name: 'Branca',
                 hex: '#F3F2EE',
                 front: 'img/blusa-dry-fit/longe.jpg',
                 back: 'img/blusa-dry-fit/frente.jpg',
-                altLabel: 'DETALHE'
+                altLabel: 'DETALHE',
+                stock: { M: 1, G: 1 },
+                extraPhotos: []
+            },
+            {
+                name: 'Azul',
+                hex: '#2B4A7F',
+                front: 'img/blusa-dry-fit/longe.jpg',
+                back: null,
+                badgeNotice: 'Foto ilustrativa (Azul)',
+                stock: { G: 1 },
+                extraPhotos: []
+            }
+        ],
+        extraPhotos: []
+    },
+    {
+        id: 'blusa-dry-fit-plus-size',
+        name: 'Blusa Dry Fit Plus Size',
+        category: 'tops',
+        categoryLabel: 'Tops & Blusas',
+        price: 45.00,
+        badge: 'Plus Size',
+        badgeType: 'rose',
+        focalPoint: 'center 70%',
+        description: 'Camiseta em malha Dry Fit de modelagem confortável e ampla Plus Size, ultra respirável com caimento leve e suave.',
+        sizes: ['PLUS'],
+        colors: [
+            {
+                name: 'Branca',
+                hex: '#F3F2EE',
+                front: 'img/blusa-dry-fit/longe.jpg',
+                back: 'img/blusa-dry-fit/frente.jpg',
+                altLabel: 'DETALHE',
+                stock: { PLUS: 1 },
+                extraPhotos: []
+            },
+            {
+                name: 'Marrom',
+                hex: '#5C3327',
+                front: 'img/blusa-dry-fit/longe.jpg',
+                back: null,
+                badgeNotice: 'Foto ilustrativa (Marrom)',
+                stock: { PLUS: 1 },
+                extraPhotos: []
+            }
+        ],
+        extraPhotos: []
+    },
+    {
+        id: 'top-frente-u',
+        name: 'Top Frente Única',
+        category: 'tops',
+        categoryLabel: 'Tops & Blusas',
+        price: 15.00,
+        badge: 'Essencial',
+        badgeType: 'dark',
+        focalPoint: 'center 48%',
+        description: 'Top frente única com decote U elegante e costas livres. Sustentação firme e bordado exclusivo Nisa no peito.',
+        sizes: ['U'],
+        colors: [
+            {
+                name: 'Preto',
+                hex: '#171717',
+                front: 'img/top-frente-u/preto-frente.jpg',
+                back: 'img/top-frente-u/preto-costas.jpg',
+                stock: { U: 1 },
+                extraPhotos: []
+            },
+            {
+                name: 'Azul',
+                hex: '#163372',
+                front: 'img/top-frente-u/azul-frente.jpg',
+                back: 'img/top-frente-u/azul-costas.jpg',
+                stock: { U: 1 },
+                extraPhotos: []
+            },
+            {
+                name: 'Marrom Claro',
+                hex: '#844631',
+                front: 'img/top-frente-u/marrom-claro-frente.jpg',
+                back: 'img/top-frente-u/marrom-claro-costas.jpg',
+                stock: { U: 1 },
+                extraPhotos: []
+            },
+            {
+                name: 'Marrom Escuro',
+                hex: '#5E2421',
+                front: 'img/top-frente-u/marrom-escuro-frente.jpg',
+                back: 'img/top-frente-u/marrom-escuro-costas.jpg',
+                stock: { U: 1 },
+                extraPhotos: []
             }
         ],
         extraPhotos: []
@@ -249,12 +325,35 @@ let searchQuery = '';
 
 // Inicializa estado padrão de cada produto
 PRODUCTS.forEach(p => {
+    const firstColor = p.colors[0];
+    const availableSizes = getAvailableSizesForColor(firstColor, p.sizes);
+    const initialSize = availableSizes[0] || p.sizes[0];
+
     cardSelections[p.id] = {
         colorIndex: 0,
-        size: p.sizes[1] || p.sizes[0], // Padrão 'M'
+        size: initialSize,
         view: 'front' // 'front' | 'back'
     };
 });
+
+// Helper para obter tamanhos disponíveis em estoque para uma cor
+function getAvailableSizesForColor(color, allSizes) {
+    if (!color.stock) return allSizes;
+    const inStockSizes = allSizes.filter(s => (color.stock[s] || 0) > 0);
+    return inStockSizes.length > 0 ? inStockSizes : allSizes;
+}
+
+// Helper para obter texto amigável de estoque
+function getStockNoticeText(color, currentSize) {
+    if (color.badgeNotice) return color.badgeNotice;
+    if (color.stock && currentSize) {
+        const qty = color.stock[currentSize] || 0;
+        if (qty === 1) return 'Última 1 unidade disponível';
+        if (qty > 1) return `${qty} unidades disponíveis`;
+        return 'Tamanho esgotado nesta cor';
+    }
+    return '';
+}
 
 // Utilitário de Moeda (R$)
 function formatCurrency(value) {
@@ -362,14 +461,20 @@ function renderCatalog() {
             ></button>
         `).join('');
 
-        const sizesHTML = product.sizes.map(s => `
-            <button
-                type="button"
-                class="size-pill ${s === state.size ? 'active' : ''}"
-                onclick="selectProductSize('${product.id}', '${s}')"
-            >${s}</button>
-        `).join('');
+        const sizesHTML = product.sizes.map(s => {
+            const hasStock = !activeColor.stock || (activeColor.stock[s] || 0) > 0;
+            const isSelected = s === state.size && hasStock;
+            return `
+                <button
+                    type="button"
+                    class="size-pill ${isSelected ? 'active' : ''} ${!hasStock ? 'disabled' : ''}"
+                    ${!hasStock ? 'disabled title="Esgotado nesta cor"' : ''}
+                    onclick="selectProductSize('${product.id}', '${s}')"
+                >${s}</button>
+            `;
+        }).join('');
 
+        const stockNotice = getStockNoticeText(activeColor, state.size);
         const secondLabel = activeColor.altLabel || 'COSTAS';
 
         return `
@@ -433,9 +538,10 @@ function renderCatalog() {
                         <div class="size-pills" id="sizes-${product.id}">
                             ${sizesHTML}
                         </div>
+                        <span class="product-stock-tag" id="stock-tag-${product.id}">${stockNotice}</span>
                     </div>
 
-                    <button type="button" class="add-to-cart-btn" onclick="addProductToCart('${product.id}')">
+                    <button type="button" class="add-to-cart-btn" id="add-btn-${product.id}" onclick="addProductToCart('${product.id}')">
                         <i class="ph ph-shopping-bag"></i>
                         <span>ADICIONAR À SACOLA</span>
                     </button>
@@ -454,6 +560,13 @@ window.selectProductColor = function(productId, colorIndex) {
     cardSelections[productId].view = 'front';
 
     const activeColor = product.colors[colorIndex];
+    const availableSizes = getAvailableSizesForColor(activeColor, product.sizes);
+
+    // Se o tamanho atual não estiver disponível na nova cor, escolhe o primeiro disponível
+    if (!availableSizes.includes(cardSelections[productId].size)) {
+        cardSelections[productId].size = availableSizes[0] || product.sizes[0];
+    }
+
     const currentPrice = activeColor.price || product.price;
     const imgEl = document.getElementById(`img-${productId}`);
     const labelEl = document.getElementById(`color-label-${productId}`);
@@ -461,6 +574,8 @@ window.selectProductColor = function(productId, colorIndex) {
     const installmentsEl = document.getElementById(`installments-${productId}`);
     const flipBtn = document.getElementById(`flip-btn-${productId}`);
     const swatchesContainer = document.getElementById(`swatches-${productId}`);
+    const sizesContainer = document.getElementById(`sizes-${productId}`);
+    const stockTagEl = document.getElementById(`stock-tag-${productId}`);
 
     if (imgEl) imgEl.src = activeColor.front;
     if (labelEl) labelEl.textContent = activeColor.name;
@@ -476,6 +591,25 @@ window.selectProductColor = function(productId, colorIndex) {
         Array.from(swatchesContainer.children).forEach((btn, idx) => {
             btn.classList.toggle('active', idx === colorIndex);
         });
+    }
+
+    if (sizesContainer) {
+        sizesContainer.innerHTML = product.sizes.map(s => {
+            const hasStock = !activeColor.stock || (activeColor.stock[s] || 0) > 0;
+            const isSelected = s === cardSelections[productId].size && hasStock;
+            return `
+                <button
+                    type="button"
+                    class="size-pill ${isSelected ? 'active' : ''} ${!hasStock ? 'disabled' : ''}"
+                    ${!hasStock ? 'disabled title="Esgotado nesta cor"' : ''}
+                    onclick="selectProductSize('${product.id}', '${s}')"
+                >${s}</button>
+            `;
+        }).join('');
+    }
+
+    if (stockTagEl) {
+        stockTagEl.textContent = getStockNoticeText(activeColor, cardSelections[productId].size);
     }
 };
 
@@ -502,14 +636,28 @@ window.toggleProductView = function(productId) {
     }
 };
 
-// Selecionar Tamanho (P, M, G)
+// Selecionar Tamanho (P, M, G, PLUS, U)
 window.selectProductSize = function(productId, size) {
-    cardSelections[productId].size = size;
+    const product = PRODUCTS.find(p => p.id === productId);
+    if (!product) return;
+
+    const state = cardSelections[productId];
+    const activeColor = product.colors[state.colorIndex];
+
+    // Se estiver sem estoque nesta cor, não seleciona
+    if (activeColor.stock && (activeColor.stock[size] || 0) <= 0) return;
+
+    state.size = size;
     const sizesContainer = document.getElementById(`sizes-${productId}`);
     if (sizesContainer) {
         Array.from(sizesContainer.children).forEach(btn => {
-            btn.classList.toggle('active', btn.textContent === size);
+            btn.classList.toggle('active', btn.textContent.trim() === size);
         });
+    }
+
+    const stockTagEl = document.getElementById(`stock-tag-${productId}`);
+    if (stockTagEl) {
+        stockTagEl.textContent = getStockNoticeText(activeColor, size);
     }
 };
 
@@ -520,11 +668,24 @@ window.addProductToCart = function(productId) {
 
     const state = cardSelections[productId];
     const selectedColor = product.colors[state.colorIndex];
+
+    // Validação de estoque
+    if (selectedColor.stock && (selectedColor.stock[state.size] || 0) <= 0) {
+        showToast(`O tamanho ${state.size} da cor ${selectedColor.name} está esgotado!`);
+        return;
+    }
+
     const itemPrice = selectedColor.price || product.price;
     const cartKey = `${product.id}__${selectedColor.name}__${state.size}`;
 
     const existing = cart.find(item => item.key === cartKey);
+    const maxStock = selectedColor.stock ? (selectedColor.stock[state.size] || 99) : 99;
+
     if (existing) {
+        if (existing.qty >= maxStock) {
+            showToast(`Você já atingiu o limite de estoque (${maxStock}) desta peça!`);
+            return;
+        }
         existing.qty += 1;
     } else {
         cart.push({
@@ -535,6 +696,7 @@ window.addProductToCart = function(productId) {
             size: state.size,
             price: itemPrice,
             image: selectedColor.front,
+            maxStock: maxStock,
             qty: 1
         });
     }
@@ -555,6 +717,11 @@ window.addProductToCart = function(productId) {
 window.changeCartItemQty = function(key, delta) {
     const index = cart.findIndex(item => item.key === key);
     if (index === -1) return;
+
+    if (delta > 0 && cart[index].maxStock && cart[index].qty >= cart[index].maxStock) {
+        showToast(`Limite de estoque atingido (${cart[index].maxStock} unid.)`);
+        return;
+    }
 
     cart[index].qty += delta;
     if (cart[index].qty <= 0) {
@@ -677,13 +844,20 @@ window.openProductModal = function(productId) {
         ></button>
     `).join('');
 
-    const sizesHTML = product.sizes.map(s => `
-        <button
-            type="button"
-            class="size-pill ${s === state.size ? 'active' : ''}"
-            onclick="selectProductSize('${product.id}', '${s}'); openProductModal('${product.id}')"
-        >${s}</button>
-    `).join('');
+    const sizesHTML = product.sizes.map(s => {
+        const hasStock = !activeColor.stock || (activeColor.stock[s] || 0) > 0;
+        const isSelected = s === state.size && hasStock;
+        return `
+            <button
+                type="button"
+                class="size-pill ${isSelected ? 'active' : ''} ${!hasStock ? 'disabled' : ''}"
+                ${!hasStock ? 'disabled title="Esgotado nesta cor"' : ''}
+                onclick="selectProductSize('${product.id}', '${s}'); openProductModal('${product.id}')"
+            >${s}</button>
+        `;
+    }).join('');
+
+    const stockNotice = getStockNoticeText(activeColor, state.size);
 
     modalContent.innerHTML = `
         <div class="modal-gallery">
@@ -720,6 +894,7 @@ window.openProductModal = function(productId) {
                 <div class="size-pills">
                     ${sizesHTML}
                 </div>
+                <span class="product-stock-tag">${stockNotice}</span>
             </div>
 
             <button type="button" class="add-to-cart-btn" onclick="addProductToCart('${product.id}'); closeProductModal(); openCart();">
