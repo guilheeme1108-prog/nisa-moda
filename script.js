@@ -184,6 +184,7 @@ const PRODUCTS = [
                 hex: '#D7C2A8',
                 front: 'img/conjunto-com-bolso/bege-frente.jpg',
                 back: null,
+                focalPoint: 'center 50%',
                 stock: { M: 1 },
                 extraPhotos: []
             },
@@ -192,6 +193,7 @@ const PRODUCTS = [
                 hex: '#171717',
                 front: 'img/conjunto-com-bolso/preto-frente.jpg',
                 back: null,
+                focalPoint: 'center 50%',
                 stock: { M: 1 },
                 extraPhotos: []
             }
@@ -226,6 +228,7 @@ const PRODUCTS = [
                 hex: '#2B4A7F',
                 front: 'img/blusa-dry-fit/azul-frente.jpg',
                 back: null,
+                focalPoint: 'center 50%',
                 stock: { G: 1 },
                 extraPhotos: []
             }
@@ -240,24 +243,26 @@ const PRODUCTS = [
         price: 45.00,
         badge: 'Plus Size',
         badgeType: 'rose',
-        focalPoint: 'center 70%',
+        focalPoint: 'center 50%',
         description: 'Camiseta em malha Dry Fit de modelagem confortável e ampla Plus Size, ultra respirável com caimento leve e suave.',
         sizes: ['PLUS'],
         colors: [
+            {
+                name: 'Marrom',
+                hex: '#5C3327',
+                front: 'img/blusa-dry-fit/marrom-frente.jpg',
+                back: null,
+                focalPoint: 'center 50%',
+                stock: { PLUS: 1 },
+                extraPhotos: []
+            },
             {
                 name: 'Branca',
                 hex: '#F3F2EE',
                 front: 'img/blusa-dry-fit/longe.jpg',
                 back: 'img/blusa-dry-fit/frente.jpg',
                 altLabel: 'DETALHE',
-                stock: { PLUS: 1 },
-                extraPhotos: []
-            },
-            {
-                name: 'Marrom',
-                hex: '#5C3327',
-                front: 'img/blusa-dry-fit/marrom-frente.jpg',
-                back: null,
+                focalPoint: 'center 70%',
                 stock: { PLUS: 1 },
                 extraPhotos: []
             }
@@ -482,7 +487,7 @@ function renderCatalog() {
                         alt="${product.name} - ${activeColor.name}"
                         class="main-photo"
                         id="img-${product.id}"
-                        style="object-position: ${product.focalPoint || 'center 62%'};"
+                        style="object-position: ${activeColor.focalPoint || product.focalPoint || 'center 62%'};"
                         loading="lazy"
                     >
                     <div class="image-actions" onclick="event.stopPropagation()">
@@ -573,7 +578,10 @@ window.selectProductColor = function(productId, colorIndex) {
     const sizesContainer = document.getElementById(`sizes-${productId}`);
     const stockTagEl = document.getElementById(`stock-tag-${productId}`);
 
-    if (imgEl) imgEl.src = activeColor.front;
+    if (imgEl) {
+        imgEl.src = activeColor.front;
+        imgEl.style.objectPosition = activeColor.focalPoint || product.focalPoint || 'center 62%';
+    }
     if (labelEl) labelEl.textContent = activeColor.name;
     if (priceEl) priceEl.textContent = formatCurrency(currentPrice);
     if (installmentsEl) installmentsEl.textContent = `ou 3x de ${formatCurrency(currentPrice / 3)} sem juros`;
@@ -858,7 +866,7 @@ window.openProductModal = function(productId) {
     modalContent.innerHTML = `
         <div class="modal-gallery">
             <div class="modal-main-img-wrap">
-                <img src="${allPhotos[0]}" alt="${product.name}" id="modal-main-img" style="object-position: ${product.focalPoint || 'center 62%'};">
+                <img src="${allPhotos[0]}" alt="${product.name}" id="modal-main-img" style="object-position: ${activeColor.focalPoint || product.focalPoint || 'center 62%'};">
             </div>
             <div class="modal-thumbs">
                 ${thumbsHTML}
