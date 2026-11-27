@@ -38,8 +38,8 @@ const PRODUCTS = [
             {
                 name: 'Marrom',
                 hex: '#5C3327',
-                front: 'img/macacao-duo/sentada-1.jpg',
-                back: 'img/macacao-duo/em-pe.jpg',
+                front: 'img/macacao-duo/em-pe.jpg',
+                back: 'img/macacao-duo/sentada-1.jpg',
                 altLabel: 'FOTO 2',
                 stock: { P: 1, M: 2, G: 1 },
                 extraPhotos: [
@@ -182,19 +182,17 @@ const PRODUCTS = [
             {
                 name: 'Bege',
                 hex: '#D7C2A8',
-                front: 'img/conjunto-com-bolso/azul-frente.jpg',
+                front: 'img/conjunto-com-bolso/bege-frente.jpg',
                 back: null,
                 stock: { M: 1 },
-                badgeNotice: 'Foto ilustrativa (Bege)',
                 extraPhotos: []
             },
             {
                 name: 'Preto',
                 hex: '#171717',
-                front: 'img/conjunto-com-bolso/azul-frente.jpg',
+                front: 'img/conjunto-com-bolso/preto-frente.jpg',
                 back: null,
                 stock: { M: 1 },
-                badgeNotice: 'Foto ilustrativa (Preto)',
                 extraPhotos: []
             }
         ],
@@ -226,9 +224,8 @@ const PRODUCTS = [
             {
                 name: 'Azul',
                 hex: '#2B4A7F',
-                front: 'img/blusa-dry-fit/longe.jpg',
+                front: 'img/blusa-dry-fit/azul-frente.jpg',
                 back: null,
-                badgeNotice: 'Foto ilustrativa (Azul)',
                 stock: { G: 1 },
                 extraPhotos: []
             }
@@ -259,9 +256,8 @@ const PRODUCTS = [
             {
                 name: 'Marrom',
                 hex: '#5C3327',
-                front: 'img/blusa-dry-fit/longe.jpg',
+                front: 'img/blusa-dry-fit/marrom-frente.jpg',
                 back: null,
-                badgeNotice: 'Foto ilustrativa (Marrom)',
                 stock: { PLUS: 1 },
                 extraPhotos: []
             }
